@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "index_patterns": [
+    "metrics-iplogs-*"
+  ],
+  "settings": {
+    "index.refresh_interval": "30s",
+    "number_of_shards": "1",
+    "number_of_replicas": "1"
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "@version": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "event": {
+        "properties": {
+          "kind": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 16
+              }
+            }
+          },
+          "type": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 16
+              }
+            }
+          }
+        }
+      },
+      "message": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "metrics": {
+        "properties": {
+          "event": {
+            "properties": {
+              "count": {
+                "type": "long"
+              },
+              "rate_15m": {
+                "type": "float"
+              },
+              "rate_1m": {
+                "type": "float"
+              },
+              "rate_5m": {
+                "type": "float"
+              }
+            }
+          }
+        }
+      },
+      "tags": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      }
+    }
+  }
+}
