@@ -1,5 +1,7 @@
 # UmbrellaLogstashPipeline
 
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/rafaelsampaio/UmbrellaLogstashPipeline)
+
 This project is an **example** of a [Logstash](https://www.elastic.co/logstash) pipeline to import [Cisco Umbrella logs](https://docs.umbrella.com/deployment-umbrella/docs/log-formats-and-versioning) from S3, filter and do some enrichment, then export them to Elastisearch. There is one pipeline for each type of log (dnslogs, proxylogs, and iplogs) and they export to the same Elastisearch cluster into different indexes.
 
 I tried the best to use the [Elastic Common Schema](https://www.elastic.co/guide/en/ecs/current/ecs-reference.html).
