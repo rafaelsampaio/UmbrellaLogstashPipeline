@@ -2,7 +2,7 @@
 
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/rafaelsampaio/UmbrellaLogstashPipeline)
 
-This code is a set of [Logstash](https://www.elastic.co/logstash) pipeline to import [Cisco Umbrella logs](https://docs.umbrella.com/deployment-umbrella/docs/log-formats-and-versioning) from S3, filter and do some enrichment, then export them to Elastisearch. There is one pipeline for each type of log (dnslogs, proxylogs, and iplogs) and they export to the same Elastisearch cluster into different indexes.
+This code is a set of [Logstash](https://www.elastic.co/logstash) pipeline to import [Cisco Umbrella logs](https://docs.umbrella.com/deployment-umbrella/docs/log-formats-and-versioning) from S3, filter and do some enrichment, then export them to Elastisearch. There is one pipeline for each type of log (dnslogs, proxylogs, and iplogs) and they export to different indexes.
 
 Check [Elastic Common Schema](https://www.elastic.co/guide/en/ecs/current/ecs-reference.html).
 
@@ -20,12 +20,12 @@ You're going to need AWS S3 credentials to access your S3 bucket or the credenti
 Copy the content of this project to your Logstash dir and configure the `pipelines.yml` (usually located in `config` dir) with the pipelines. Set a variable `LOGSTASH_PATH` to point to your Logstash dir. Configure workers (`pipeline.workers`) as necessary.
 
 ```yaml
-    - pipeline.id: dnslogs
-      path.config: "${LOGSTASH_PATH}/pipeline/dnslogs-pipeline.conf"
-    - pipeline.id: proxylogs
-      path.config: "${LOGSTASH_PATH}/pipeline/proxylogs-pipeline.conf"
-    - pipeline.id: iplogs
-      path.config: "${LOGSTASH_PATH}/pipeline/iplogs-pipeline.conf"
+- pipeline.id: dnslogs
+  path.config: "${LOGSTASH_PATH}/pipeline/dnslogs-pipeline.conf"
+- pipeline.id: proxylogs
+  path.config: "${LOGSTASH_PATH}/pipeline/proxylogs-pipeline.conf"
+- pipeline.id: iplogs
+  path.config: "${LOGSTASH_PATH}/pipeline/iplogs-pipeline.conf"
 ```
 
 The output is configured to export to an Elasticsearch cluster. Set the variable `ELASTICSEARCH_HOSTS` with your server, like `https://host1:9300`. Don't forget to set the username `ELASTICSEARCH_USER` and the password `ELASTICSEARCH_PASSWORD`.
