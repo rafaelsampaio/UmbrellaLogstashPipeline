@@ -2,14 +2,15 @@
 
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/rafaelsampaio/UmbrellaLogstashPipeline)
 
-This project is an **example** of a [Logstash](https://www.elastic.co/logstash) pipeline to import [Cisco Umbrella logs](https://docs.umbrella.com/deployment-umbrella/docs/log-formats-and-versioning) from S3, filter and do some enrichment, then export them to Elastisearch. There is one pipeline for each type of log (dnslogs, proxylogs, and iplogs) and they export to the same Elastisearch cluster into different indexes.
+This code is a set of [Logstash](https://www.elastic.co/logstash) pipeline to import [Cisco Umbrella logs](https://docs.umbrella.com/deployment-umbrella/docs/log-formats-and-versioning) from S3, filter and do some enrichment, then export them to Elastisearch. There is one pipeline for each type of log (dnslogs, proxylogs, and iplogs) and they export to the same Elastisearch cluster into different indexes.
 
-I tried the best to use the [Elastic Common Schema](https://www.elastic.co/guide/en/ecs/current/ecs-reference.html).
+Check [Elastic Common Schema](https://www.elastic.co/guide/en/ecs/current/ecs-reference.html).
 
 ## Umbrella setup
 
 First of all, you need to enable Umbrella logs in your policies. Please, check the docs in Cisco Umbrella User Guide:
-- [Enable Logging to Your Own S3 Bucket](https://docs.umbrella.com/deployment-umbrella/docs/setting-up-an-amazon-s3-bucket) 
+
+- [Enable Logging to Your Own S3 Bucket](https://docs.umbrella.com/deployment-umbrella/docs/setting-up-an-amazon-s3-bucket)
 - [Enable Logging to a Cisco-managed S3 Bucket](https://docs.umbrella.com/deployment-umbrella/docs/cisco-managed-s3-bucket)
 
 You're going to need AWS S3 credentials to access your S3 bucket or the credentials provided by Cisco if it is a Cisco-managed bucket.
@@ -18,7 +19,7 @@ You're going to need AWS S3 credentials to access your S3 bucket or the credenti
 
 Copy the content of this project to your Logstash dir and configure the `pipelines.yml` (usually located in `config` dir) with the pipelines. Set a variable `LOGSTASH_PATH` to point to your Logstash dir. Configure workers (`pipeline.workers`) as necessary.
 
-```
+```yaml
     - pipeline.id: dnslogs
       path.config: "${LOGSTASH_PATH}/pipeline/dnslogs-pipeline.conf"
     - pipeline.id: proxylogs
@@ -31,10 +32,10 @@ The output is configured to export to an Elasticsearch cluster. Set the variable
 
 The timezone used in custom_timestamp.rb is setted for America/Sao_Paulo. Use your timezone to create correct time-related attributes.
 
-
-## Variables:
+## Variables
 
 These are the variables that you have to set, getting from [Secrets](https://www.elastic.co/guide/en/logstash/current/keystore.html) or system environment (not recommended):
+
 - **AWS_ACCESS_KEY_ID**: The AWS access key to access the S3 bucket where the logs are.
 - **AWS_SECRET_ACCESS_KEY**: The AWS secret key to access the S3 bucket where the logs are.
 - **AWS_S3_BUCKET**: The AWS S3 bucket. If it's a Cisco managed bucket, use the content before the /.
