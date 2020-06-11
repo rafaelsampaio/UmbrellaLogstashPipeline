@@ -34,7 +34,7 @@ The timezone used in custom_timestamp.rb is setted for America/Sao_Paulo. Use yo
 
 Download an updated [GeoLite2](https://dev.maxmind.com/geoip/geoip2/geolite2/) and save MaxMind DB files (.mmdb) in `$LOGSTASH_PATH/maxmind`. You need both ASN and City MMDB.
 
-Also, download an updated [regexes.yaml](https://github.com/ua-parser/uap-core) and save it in `$LOGSTASH_PATH/maxmind/ua-parser`.
+Also, download an updated [regexes.yaml](https://github.com/ua-parser/uap-core) and save it in `$LOGSTASH_PATH/ua-parser`.
 
 ## Variables
 
