@@ -2,7 +2,7 @@
 
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/rafaelsampaio/UmbrellaLogstashPipeline)
 
-This code is a set of [Logstash](https://www.elastic.co/logstash) pipeline to import [Cisco Umbrella logs](https://docs.umbrella.com/deployment-umbrella/docs/log-formats-and-versioning) from S3, filter and do some enrichment, then export them to Elastisearch. There is one pipeline for each type of log (dnslogs, proxylogs, and iplogs) and they export to different indexes.
+This code is a set of [Logstash](https://www.elastic.co/logstash) pipelines to import [Cisco Umbrella logs](https://docs.umbrella.com/deployment-umbrella/docs/log-formats-and-versioning) from S3, filter and do some enrichment, then export them to Elastisearch. There is one pipeline for each type of log (dnslogs, proxylogs, and iplogs) and they export to different indexes.
 
 Check [Elastic Common Schema](https://www.elastic.co/guide/en/ecs/current/ecs-reference.html).
 
@@ -31,6 +31,10 @@ Copy the content of this project to your Logstash dir and configure the `pipelin
 The output is configured to export to an Elasticsearch cluster. Set the variable `ELASTICSEARCH_HOSTS` with your server, like `https://host1:9300`. Don't forget to set the username `ELASTICSEARCH_USER` and the password `ELASTICSEARCH_PASSWORD`.
 
 The timezone used in custom_timestamp.rb is setted for America/Sao_Paulo. Use your timezone to create correct time-related attributes.
+
+Download an updated [GeoLite2](https://dev.maxmind.com/geoip/geoip2/geolite2/) and save MaxMind DB files (.mmdb) in `$LOGSTASH_PATH/maxmind`. You need both ASN and City MMDB.
+
+Also, download an updated [regexes.yaml](https://github.com/ua-parser/uap-core) and save it in `$LOGSTASH_PATH/maxmind/ua-parser`.
 
 ## Variables
 
